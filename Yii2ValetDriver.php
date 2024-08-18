@@ -1,10 +1,11 @@
 <?php
+namespace Valet\Drivers\Custom;
 /* @link http://www.github.com/myomyintaung512
  * @copyright Myo Myint Aung (Juno)
  * Written by Myo Myint Aung <myomyintaung512@gmail.com>, February 2020
  */
  
-class Yii2ValetDriver extends ValetDriver
+class Yii2ValetDriver extends \Valet\Drivers\ValetDriver
 {
     /**
      * Determine if the driver serves the request.
@@ -14,7 +15,7 @@ class Yii2ValetDriver extends ValetDriver
      * @param  string  $uri
      * @return bool
      */
-    public function serves($sitePath, $siteName, $uri)
+    public function serves($sitePath, $siteName, $uri):bool
     {
         if (file_exists($sitePath.'/vendor/yiisoft/yii2/Yii.php')) {
             return true;
@@ -56,7 +57,7 @@ class Yii2ValetDriver extends ValetDriver
      * @param  string  $uri
      * @return string
      */
-    public function frontControllerPath($sitePath, $siteName, $uri)
+    public function frontControllerPath($sitePath, $siteName, $uri):string
     {
       $path = explode('/',trim($uri,'/'));
       if (file_exists($sitePath.'/web/')) {
